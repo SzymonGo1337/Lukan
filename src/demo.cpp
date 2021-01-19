@@ -39,7 +39,10 @@ int main(int argc, char** argv) {
 
     Lk::Object2D obj1(200.0f, 200.0f, 200.0f, 200.0f, false);
 
-    Lk::Texture2D tex1("res/Lukan.png");
+    Lk::Texture2D tex1("res/test.jpg");
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
 
     while(!glfwWindowShouldClose(window.GetNativeWindow())) {
         window.Clear();

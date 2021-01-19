@@ -39,11 +39,11 @@ namespace Lk {
     
     void Object2D::BindVBO() {
         vfloat vertices[] = {
-            // positions                             // colors          // texture coords
-            m_x +  m_width, m_y +  m_height, 0.0f,   1.0f, 0.0f, 0.0f,  -1.0f, 1.0f, // top right
-            m_x +  m_width, m_y + -m_height, 0.0f,   0.0f, 1.0f, 0.0f,  -1.0f, 0.0f, // bottom right
-            m_x + -m_width, m_y + -m_height, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-            m_x + -m_width, m_y +  m_height, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
+            // positions                             // colors          // texture
+            m_x +  m_width, m_y +  m_height, 0.0f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+            m_x +  m_width, m_y + -m_height, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
+            m_x + -m_width, m_y + -m_height, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,
+            m_x + -m_width, m_y +  m_height, 0.0f,   1.0f, 1.0f, 0.0f,   1.0f, 1.0f
         };
 
         glBindBuffer(GL_ARRAY_BUFFER, m_VBO);

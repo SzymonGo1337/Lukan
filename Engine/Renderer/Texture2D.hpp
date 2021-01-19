@@ -4,7 +4,7 @@
 
 #include "../LukanGL.hpp"
 
-#include <SOIL2/stb_image.h>
+#include <SOIL2/SOIL2.h>
 
 namespace Lk {
     class Texture2D {
@@ -16,8 +16,6 @@ namespace Lk {
 
     private:
         vuint m_texture;
-        vint m_width, m_height, m_nrChannels;
-        unsigned char *m_data;
 
     };
 };
