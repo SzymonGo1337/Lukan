@@ -9,6 +9,8 @@
 namespace Lk {
     using vint = int;
     using vuint = uint32_t;
+    using vfloat = float;
+    using vufloat = double;
     using vlong = long;
     using vulong = uint64_t;
     using vshort = short;

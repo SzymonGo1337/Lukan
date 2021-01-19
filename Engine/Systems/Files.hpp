@@ -7,10 +7,10 @@
 namespace Lk {
     class File {
     public:
-        File(const vstring& filename);
+        File(const std::string& filename);
 
-        void Load(const vstring& filename);
-        void Save(const vstring& filename, const vstring& data);
+        void Load(const std::string& filename);
+        void Save(const std::string& filename, const std::string& data);
 
     private:
         std::string m_line;

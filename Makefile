@@ -1,5 +1,5 @@
-ENGINE_OBJS = engine/*.hpp engine/*.cpp engine/Systems/*.hpp engine/Systems/*.cpp
-RENDERER_OBJS = engine/Renderer/*.hpp engine/Renderer/*.cpp
+ENGINE_OBJS = Engine/*.hpp Engine/*.cpp Engine/Systems/*.hpp Engine/Systems/*.cpp
+RENDERER_OBJS = Engine/Renderer/*.hpp Engine/Renderer/*.cpp
 
 #OBJS specifies which files to compile as part of the project
 OBJS = $(ENGINE_OBJS) $(RENDERER_OBJS) src/*.cpp

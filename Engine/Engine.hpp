@@ -29,8 +29,17 @@
 #include <sstream>
 #include <string>
 
+#define WIDTH 1280
+#define HEIGHT 720
+
+#include "Systems/Files.hpp"
+
 #include "LukanGL.hpp"
 
 #include "Window.hpp"
+
+#include "Renderer/Shader.hpp"
+#include "Renderer/Texture2D.hpp"
+#include "Renderer/Object2D.hpp"
 
 #endif

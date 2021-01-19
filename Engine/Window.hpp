@@ -9,7 +9,7 @@
 namespace Lk {
     class Window {
     public:
-        Window(const vstring& title = "Lukan - Engine", vuint width = 1280, vuint height = 720, vbool resizable = false);
+        Window(const vstring& title = "Lukan - Engine", vuint width = WIDTH, vuint height = HEIGHT, vbool resizable = false);
 
         void MakeCurrentContext();
         void Clear();

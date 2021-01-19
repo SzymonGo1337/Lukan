@@ -1,7 +1,7 @@
 #include "Files.hpp"
 
 namespace Lk {
-    File::File(const vstring& filename) {
+    File::File(const std::string& filename) {
         m_line = "";
         m_data = "";
         std::ifstream myfile(filename);
@@ -14,7 +14,7 @@ namespace Lk {
         }
     }
 
-    void File::Load(const vstring& filename) {
+    void File::Load(const std::string& filename) {
         m_line = "";
         m_data = "";
         std::ifstream myfile(filename);
@@ -27,7 +27,7 @@ namespace Lk {
         }
     }
         
-    void File::Save(const vstring& filename, const vstring& data) {
+    void File::Save(const std::string& filename, const std::string& data) {
         std::ofstream myfile(filename);
         if(myfile.is_open()) {
             myfile << data;
