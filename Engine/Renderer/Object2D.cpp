@@ -41,9 +41,9 @@ namespace Lk {
         vfloat vertices[] = {
             // positions                             // colors          // texture
             m_x +  m_width, m_y +  m_height, 0.0f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-            m_x +  m_width, m_y + -m_height, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
-            m_x + -m_width, m_y + -m_height, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,
-            m_x + -m_width, m_y +  m_height, 0.0f,   1.0f, 1.0f, 0.0f,   1.0f, 1.0f
+            m_x +  m_width, m_y + -m_height, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+            m_x + -m_width, m_y + -m_height, 0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+            m_x + -m_width, m_y +  m_height, 0.0f,   1.0f, 1.0f, 0.0f,   1.0f, 0.0f
         };
 
         glBindBuffer(GL_ARRAY_BUFFER, m_VBO);

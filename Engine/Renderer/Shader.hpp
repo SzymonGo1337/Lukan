@@ -16,6 +16,7 @@ namespace Lk {
         void Unbind();
 
         vuint GetUniformLocation(vchar* uniform);
+        vint GetAttribLocation(vchar* attrib);
         vuint GetProgram();
 
     private:

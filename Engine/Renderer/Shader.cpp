@@ -67,6 +67,10 @@ namespace Lk {
     vuint Shader::GetUniformLocation(vchar* uniform) {
         return glGetUniformLocation(GetProgram(), uniform);
     }
+
+    vint Shader::GetAttribLocation(vchar* attrib) {
+        return glGetAttribLocation(GetProgram(), attrib);
+    }
     
     vuint Shader::GetProgram() {
         return m_program;

@@ -23,7 +23,7 @@ const char* fragSrc = R"(
     in vec2 v_TexCoord;
     void main()
     {
-        Color = u_Color * texture(u_Texture, v_TexCoord); // vec4(v_TexCoord, 0, 1);
+        Color = u_Color * texture2D(u_Texture, v_TexCoord); // vec4(v_TexCoord, 0, 1);
     }
 )";
 
