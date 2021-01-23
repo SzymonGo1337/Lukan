@@ -3,7 +3,7 @@
 const char* vertSrc = R"(
     #version 460 core
     layout (location = 0) in vec3 a_Pos;
-    layout (location = 1) in vec2 a_TexCoord;
+    layout (location = 2) in vec2 a_TexCoord;
     out vec2 v_TexCoord;
     uniform mat4 u_viewProjection = mat4(1.0);
     uniform mat4 u_transform = mat4(1.0);
@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 
     Lk::Object2D obj1(200.0f, 200.0f, 200.0f, 200.0f, false);
 
-    Lk::Texture2D tex1("res/test.jpg");
+    Lk::Texture2D tex1("res/Lukan.png");
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
