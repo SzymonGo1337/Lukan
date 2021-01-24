@@ -27,6 +27,10 @@ const char* fragSrc = R"(
     }
 )";
 
+void GLAPIENTRY OpenGLMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
+    fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n", (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""), type, severity, message);
+}
+
 int main(int argc, char** argv) {
     Lk::LukanGL lukanGLContext(4, 6);
 
@@ -34,6 +38,9 @@ int main(int argc, char** argv) {
 
     lukanGLContext.SetProcessAddress((Lk::vLukanGLLoader)glfwGetProcAddress);
     glViewport(0, 0, 1280, 720);
+
+    glEnable(GL_DEBUG_OUTPUT);
+    glDebugMessageCallback(OpenGLMessageCallback, 0);
 
     Lk::Shader shader(vertSrc, fragSrc);
 
