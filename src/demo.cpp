@@ -23,6 +23,8 @@ void Input(GLFWwindow* window) {
     }
 }
 
+#define FPS_LIMIT 60
+
 int main(int argc, char** argv) {
     Lk::LukanGL lukanGLContext(4, 6);
 
@@ -44,6 +46,8 @@ int main(int argc, char** argv) {
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
+    double lastTime = glfwGetTime();
+
     while(!LkWindowShouldClose(window.GetNativeWindow())) {
         Input(window.GetNativeWindow());
         window.Clear();
@@ -54,5 +58,10 @@ int main(int argc, char** argv) {
         obj1.Render();
 
         window.Display();
+
+        while(glfwGetTime() < lastTime + 1.0f / FPS_LIMIT) {
+
+        }
+        lastTime += 1.0f / FPS_LIMIT;
     }
 }
