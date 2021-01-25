@@ -5,6 +5,8 @@
 #include <iostream>
 
 #include <glm/glm.hpp>
+#include <glm/ext/matrix_clip_space.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace Lk {
     using vint = int;

@@ -1,29 +1,24 @@
 #include "../Engine/Engine.hpp"
 
-void GLAPIENTRY OpenGLMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
-    fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n", (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""), type, severity, message);
-}
+Lk::Camera camera;
 
-Lk::vfloat x = 0.0f, y = 0.0f;
 void Input(GLFWwindow* window) {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
 
     if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        x = x + 4.0f;
+        camera.GetView()[3].x -= 0.005f;
     } else if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-        x = x - 4.0f;
+        camera.GetView()[3].x += 0.005f;
     }
 
     if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        y = y + 4.0f;
+        camera.GetView()[3].z -= 0.005f;
     } else if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-        y = y - 4.0f;
+        camera.GetView()[3].z += 0.005f;
     }
 }
-
-#define FPS_LIMIT 60
 
 int main(int argc, char** argv) {
     Lk::LukanGL lukanGLContext(4, 6);
@@ -33,8 +28,7 @@ int main(int argc, char** argv) {
     lukanGLContext.SetProcessAddress((Lk::vLukanGLLoader)glfwGetProcAddress);
     glViewport(0, 0, 1280, 720);
 
-    glEnable(GL_DEBUG_OUTPUT);
-    glDebugMessageCallback(OpenGLMessageCallback, NULL);
+    Lk::ErrorHandler errorHandler;
 
     Lk::Shader shader("vert.glsl", "frag.glsl", true);
 
@@ -43,10 +37,10 @@ int main(int argc, char** argv) {
     Lk::Object2D obj1(200.0f, 200.0f, 200.0f, 200.0f, false);
     obj1.SetTexture(tex1);
 
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
+    Lk::vuint u_viewProjection = shader.GetUniformLocation("u_viewProjection");
+    Lk::vuint u_transform = shader.GetUniformLocation("u_transform");
 
-    double lastTime = glfwGetTime();
+    camera.SetViewPosition(-0.25f, 0.5f, 1.0f);
 
     while(!LkWindowShouldClose(window.GetNativeWindow())) {
         Input(window.GetNativeWindow());
@@ -54,14 +48,11 @@ int main(int argc, char** argv) {
 
         shader.Bind();
 
-        obj1.SetPosition(x, y, false);
+        camera.Show(u_viewProjection);
+
+        //obj1.SetPosition(x, y, false);
         obj1.Render();
 
         window.Display();
-
-        while(glfwGetTime() < lastTime + 1.0f / FPS_LIMIT) {
-
-        }
-        lastTime += 1.0f / FPS_LIMIT;
     }
 }

@@ -33,6 +33,7 @@
 #define HEIGHT 720
 
 #include "Systems/Files.hpp"
+#include "Systems/Error.hpp"
 
 #include "LukanGL.hpp"
 
@@ -41,5 +42,6 @@
 #include "Renderer/Shader.hpp"
 #include "Renderer/Texture2D.hpp"
 #include "Renderer/Object2D.hpp"
+#include "Renderer/Camera.hpp"
 
 #endif

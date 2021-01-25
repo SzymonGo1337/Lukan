@@ -5,6 +5,7 @@ namespace Lk {
         glfwWindowHint(GLFW_RESIZABLE, resizable);
         m_window = glfwCreateWindow(width, height, title, NULL, NULL);
         MakeCurrentContext();
+        glfwSwapInterval(0);
     }
 
     void Window::MakeCurrentContext() {
