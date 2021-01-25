@@ -4,8 +4,6 @@
 
 #include "../Engine.hpp"
 
-#include "Renderer2D.hpp"
-
 namespace Lk {
     class Object2D {
     public:
@@ -21,7 +19,12 @@ namespace Lk {
 
         void Render();
 
+        void SetPosition(vfloat x, vfloat y, vbool inScale);
+        void SetSize(vfloat width, vfloat height, vbool inScale);
+        void SetTexture(Texture2D texture);
+
     private:
+        Texture2D m_texture;
         vfloat m_x, m_y, m_width, m_height;
         vuint m_VBO, m_VAO, m_EBO;
 

@@ -12,6 +12,8 @@ namespace Lk {
         void Load(const std::string& filename);
         void Save(const std::string& filename, const std::string& data);
 
+        std::string GetData();
+
     private:
         std::string m_line;
         std::string m_data;

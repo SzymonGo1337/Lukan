@@ -6,6 +6,8 @@
 
 #include <GLFW/glfw3.h>
 
+#define LkWindowShouldClose glfwWindowShouldClose
+
 namespace Lk {
     class Window {
     public:

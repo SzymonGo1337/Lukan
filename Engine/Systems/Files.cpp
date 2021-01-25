@@ -34,4 +34,8 @@ namespace Lk {
             myfile.close();
         }
     }
+
+    std::string File::GetData() {
+        return m_data;
+    }
 };

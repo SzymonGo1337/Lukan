@@ -9,10 +9,13 @@
 namespace Lk {
     class Texture2D {
     public:
+        Texture2D();
         Texture2D(const vchar* filename);
 
         void Bind();
         void Unbind();
+
+        vbool HasValue();
 
     private:
         vuint m_texture;

@@ -1,34 +1,26 @@
 #include "../Engine/Engine.hpp"
 
-const char* vertSrc = R"(
-    #version 460 core
-    layout (location = 0) in vec3 a_Pos;
-    layout (location = 2) in vec2 a_TexCoord;
-    out vec2 v_TexCoord;
-    uniform mat4 u_viewProjection = mat4(1.0);
-    uniform mat4 u_transform = mat4(1.0);
-    void main()
-    {
-        v_TexCoord = a_TexCoord;
-        gl_Position =  u_viewProjection * u_transform * vec4(a_Pos, 1.0);
-    }	
-)";
-
-const char* fragSrc = R"(
-    #version 460 core
-    uniform vec4 u_Color = vec4(1.0, 1.0, 1.0, 1.0);
-    uniform sampler2D u_Texture;
-                
-    out vec4 Color;
-    in vec2 v_TexCoord;
-    void main()
-    {
-        Color = u_Color * texture2D(u_Texture, v_TexCoord); // vec4(v_TexCoord, 0, 1);
-    }
-)";
-
 void GLAPIENTRY OpenGLMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
     fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n", (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""), type, severity, message);
+}
+
+Lk::vfloat x = 0.0f, y = 0.0f;
+void Input(GLFWwindow* window) {
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, true);
+    }
+
+    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        x = x + 4.0f;
+    } else if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        x = x - 4.0f;
+    }
+
+    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        y = y + 4.0f;
+    } else if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        y = y - 4.0f;
+    }
 }
 
 int main(int argc, char** argv) {
@@ -40,22 +32,25 @@ int main(int argc, char** argv) {
     glViewport(0, 0, 1280, 720);
 
     glEnable(GL_DEBUG_OUTPUT);
-    glDebugMessageCallback(OpenGLMessageCallback, 0);
+    glDebugMessageCallback(OpenGLMessageCallback, NULL);
 
-    Lk::Shader shader(vertSrc, fragSrc);
-
-    Lk::Object2D obj1(200.0f, 200.0f, 200.0f, 200.0f, false);
+    Lk::Shader shader("vert.glsl", "frag.glsl", true);
 
     Lk::Texture2D tex1("res/Lukan.png");
+
+    Lk::Object2D obj1(200.0f, 200.0f, 200.0f, 200.0f, false);
+    obj1.SetTexture(tex1);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    while(!glfwWindowShouldClose(window.GetNativeWindow())) {
+    while(!LkWindowShouldClose(window.GetNativeWindow())) {
+        Input(window.GetNativeWindow());
         window.Clear();
 
-        tex1.Bind();
         shader.Bind();
+
+        obj1.SetPosition(x, y, false);
         obj1.Render();
 
         window.Display();

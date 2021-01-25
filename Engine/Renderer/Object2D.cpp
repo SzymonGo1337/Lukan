@@ -8,8 +8,8 @@ namespace Lk {
             m_width = width;
             m_height = height;
         } else {
-            m_x = -(x / WIDTH);
-            m_y = y / HEIGHT;
+            m_x = -(x / (WIDTH / 2));
+            m_y = y / (HEIGHT / 2);
             m_width = width / WIDTH;
             m_height = height / HEIGHT;
         }
@@ -73,8 +73,40 @@ namespace Lk {
     }
 
     void Object2D::Render() {
+        if(m_texture.HasValue()) {
+            m_texture.Bind();
+        }
+
         BindVAO();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         UnbindVAO();
+    }
+
+    void Object2D::SetPosition(vfloat x, vfloat y, vbool inScale) {
+        if(inScale) {
+            m_x = x;
+            m_y = y;
+        } else {
+            m_x = -(x / (WIDTH / 2));
+            m_y = y / (HEIGHT / 2);
+        }
+        BindVBO();
+        BindEBO();
+    }
+    
+    void Object2D::SetSize(vfloat width, vfloat height, vbool inScale) {
+        if(inScale) {
+            m_width = width;
+            m_height = height;
+        } else {
+            m_width = width / WIDTH;
+            m_height = height / HEIGHT;
+        }
+        BindVBO();
+        BindEBO();
+    }
+
+    void Object2D::SetTexture(Texture2D texture) {
+        m_texture = texture;
     }
 };
