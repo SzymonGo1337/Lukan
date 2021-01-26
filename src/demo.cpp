@@ -8,15 +8,15 @@ void Input(GLFWwindow* window) {
     }
 
     if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        camera.GetView()[3].x -= 0.005f;
+        camera.GetView()[3].x -= 0.0005f;
     } else if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-        camera.GetView()[3].x += 0.005f;
+        camera.GetView()[3].x += 0.0005f;
     }
 
     if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        camera.GetView()[3].z -= 0.005f;
+        camera.GetView()[3].z -= 0.0005f;
     } else if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-        camera.GetView()[3].z += 0.005f;
+        camera.GetView()[3].z += 0.0005f;
     }
 }
 
@@ -34,7 +34,8 @@ int main(int argc, char** argv) {
 
     Lk::Texture2D tex1("res/Lukan.png");
 
-    Lk::Object2D obj1(200.0f, 200.0f, 200.0f, 200.0f, false);
+    Lk::Object2D obj1; //(200.0f, 200.0f, 200.0f, 200.0f, false);
+    obj1.SetPosition(200.0f, 200.0f, false);
     obj1.SetTexture(tex1);
 
     Lk::vuint u_viewProjection = shader.GetUniformLocation("u_viewProjection");

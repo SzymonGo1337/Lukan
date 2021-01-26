@@ -42,6 +42,7 @@
 #include "Renderer/Shader.hpp"
 #include "Renderer/Texture2D.hpp"
 #include "Renderer/Object2D.hpp"
+#include "Renderer/Camera2D.hpp"
 #include "Renderer/Camera.hpp"
 
 #endif
