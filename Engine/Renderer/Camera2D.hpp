@@ -8,7 +8,7 @@ namespace Lk {
     class Camera2D {
     public:
         Camera2D();
-        Camera2D(vfloat fovy, vfloat aspect, vfloat near, vfloat far);
+        Camera2D(float orthoSize, float aspectRatio, float near, float far);
 
         void Show(vuint u_viewProj);
 
