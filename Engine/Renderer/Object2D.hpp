@@ -7,7 +7,7 @@
 namespace Lk {
     class Object2D {
     public:
-        Object2D(vfloat x = 0.20f, vfloat y = 0.20f, vfloat width = 0.10f, vfloat height = 0.10f, vbool inScale = true);
+        Object2D(vfloat x = 0.20f, vfloat y = 0.20f, vfloat z = 0.0f, vfloat width = 0.10f, vfloat height = 0.10f, vbool inScale = true);
 
         void BindVAO();
         void BindVBO();
@@ -19,13 +19,14 @@ namespace Lk {
 
         void Render();
 
-        void SetPosition(vfloat x, vfloat y, vbool inScale);
+        void SetPosition(vfloat x, vfloat y, vfloat z, vbool inScale);
         void SetSize(vfloat width, vfloat height, vbool inScale);
         void SetTexture(Texture2D texture);
+        void LoadTexture(const vchar* toLoad);
 
     private:
         Texture2D m_texture;
-        vfloat m_x, m_y, m_width, m_height;
+        vfloat m_x, m_y, m_z, m_width, m_height;
         vuint m_VBO, m_VAO, m_EBO;
 
     };

@@ -32,11 +32,9 @@ int main(int argc, char** argv) {
 
     Lk::Shader shader("vert.glsl", "frag.glsl", true);
 
-    Lk::Texture2D tex1("res/Lukan.png");
-
     Lk::Object2D obj1; //(200.0f, 200.0f, 200.0f, 200.0f, false);
-    obj1.SetPosition(200.0f, 200.0f, false);
-    obj1.SetTexture(tex1);
+    obj1.SetPosition(200.0f, 200.0f, -100.0f, false);
+    obj1.LoadTexture("res/Lukan.png");
 
     Lk::vuint u_viewProjection = shader.GetUniformLocation("u_viewProjection");
     Lk::vuint u_transform = shader.GetUniformLocation("u_transform");

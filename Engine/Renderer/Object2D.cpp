@@ -1,15 +1,17 @@
 #include "Object2D.hpp"
 
 namespace Lk {
-    Object2D::Object2D(vfloat x, vfloat y, vfloat width, vfloat height, vbool inScale) {
+    Object2D::Object2D(vfloat x, vfloat y, vfloat z, vfloat width, vfloat height, vbool inScale) {
         if(inScale) {
             m_x = x;
             m_y = y;
+            m_z = z;
             m_width = width;
             m_height = height;
         } else {
             m_x = -(x / (WIDTH / 2));
             m_y = y / (HEIGHT / 2);
+            m_z = z / (WIDTH / 2);
             m_width = width / WIDTH;
             m_height = height / HEIGHT;
         }
@@ -40,10 +42,10 @@ namespace Lk {
     void Object2D::BindVBO() {
         vfloat vertices[] = {
             // positions                             // colors          // texture
-            m_x +  m_width, m_y +  m_height, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-            m_x +  m_width, m_y + -m_height, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,
-            m_x + -m_width, m_y + -m_height, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,
-            m_x + -m_width, m_y +  m_height, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f
+            m_x +  m_width, m_y +  m_height, m_z,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f,
+            m_x +  m_width, m_y + -m_height, m_z,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,
+            m_x + -m_width, m_y + -m_height, m_z,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,
+            m_x + -m_width, m_y +  m_height, m_z,   1.0f, 1.0f, 0.0f,   0.0f, 0.0f
         };
 
         glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
@@ -82,13 +84,15 @@ namespace Lk {
         UnbindVAO();
     }
 
-    void Object2D::SetPosition(vfloat x, vfloat y, vbool inScale) {
+    void Object2D::SetPosition(vfloat x, vfloat y, vfloat z, vbool inScale) {
         if(inScale) {
             m_x = x;
             m_y = y;
+            m_z = z;
         } else {
             m_x = -(x / (WIDTH / 2));
             m_y = y / (HEIGHT / 2);
+            m_z = z / (WIDTH / 2);
         }
         BindVBO();
         BindEBO();
@@ -108,5 +112,9 @@ namespace Lk {
 
     void Object2D::SetTexture(Texture2D texture) {
         m_texture = texture;
+    }
+
+    void Object2D::LoadTexture(const vchar* toLoad) {
+        m_texture = Texture2D(toLoad);
     }
 };
