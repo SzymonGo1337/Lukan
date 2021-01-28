@@ -1,6 +1,6 @@
 #include "../Engine/Engine.hpp"
 
-Lk::Camera2D camera;
+Lk::Camera camera;
 
 // TODO: keyboard class
 void Input(GLFWwindow* window) {
@@ -55,9 +55,22 @@ int main(int argc, char** argv) {
     //camera.SetViewPosition(-0.25f, 0.5f, 1.0f);
     //std::cout << camera.GetView()[3].x << " | " << camera.GetView()[3].y << " | " << camera.GetView()[3].z << "\n";
 
+    /* IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO &io = ImGui::GetIO();
+
+    ImGui_ImplGlfw_InitForOpenGL(window.GetNativeWindow(), true);
+    ImGui_ImplOpenGL3_Init("#version 330 core");
+
+    ImGui::StyleColorsDark(); */
+
     while(!LkWindowShouldClose(window.GetNativeWindow())) {
         Input(window.GetNativeWindow());
         window.Clear();
+
+        /* ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame(); */
 
         shader.Bind();
 
@@ -66,6 +79,17 @@ int main(int argc, char** argv) {
         //obj1.SetPosition(x, y, false);
         obj1.Render();
 
+        /* ImGui::Begin("Lukan Engine");
+        ImGui::Button("Close");
+        ImGui::End();
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData()); */
+
         window.Display();
     }
+
+    /* ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext(); */
 }
