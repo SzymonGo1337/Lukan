@@ -17,7 +17,7 @@ namespace Lk {
         void Clear();
         void Display();
         void Close();
-
+        
         GLFWwindow* GetNativeWindow();
 
     private:

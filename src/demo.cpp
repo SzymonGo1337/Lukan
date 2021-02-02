@@ -2,33 +2,34 @@
 
 Lk::Camera camera;
 
-// TODO: keyboard class
-void Input(GLFWwindow* window) {
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+Lk::Keyboard keyboard;
+
+void Input(LkNativeWindow window) {
+    if(keyboard.CheckKey(window, GLFW_KEY_ESCAPE)) {
         glfwSetWindowShouldClose(window, true);
     }
 
-    if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+    if(keyboard.CheckKey(window, GLFW_KEY_A)) {
         camera.GetView()[3].x -= 0.0005f;
-    } else if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+    } else if(keyboard.CheckKey(window, GLFW_KEY_D)) {
         camera.GetView()[3].x += 0.0005f;
     }
 
-    if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+    if(keyboard.CheckKey(window, GLFW_KEY_W)) {
         camera.GetView()[3].z -= 0.0005f;
-    } else if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+    } else if(keyboard.CheckKey(window, GLFW_KEY_S)) {
         camera.GetView()[3].z += 0.0005f;
     }
 
-    if(glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+    if(keyboard.CheckKey(window, GLFW_KEY_LEFT)) {
         camera.GetView()[3].x -= 0.0005f;
-    } else if(glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+    } else if(keyboard.CheckKey(window, GLFW_KEY_RIGHT)) {
         camera.GetView()[3].x += 0.0005f;
     }
 
-    if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+    if(keyboard.CheckKey(window, GLFW_KEY_UP)) {
         camera.GetView()[3].y += 0.0005f;
-    } else if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+    } else if(keyboard.CheckKey(window, GLFW_KEY_DOWN)) {
         camera.GetView()[3].y -= 0.0005f;
     }
 }

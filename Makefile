@@ -1,5 +1,5 @@
 ENGINE_OBJS = Engine/*.hpp Engine/*.cpp Engine/Systems/*.hpp Engine/Systems/*.cpp
-RENDERER_OBJS = Engine/Renderer/*.hpp Engine/Renderer/*.cpp # Engine/GUI/*.hpp
+RENDERER_OBJS = Engine/Renderer/*.hpp Engine/Renderer/*.cpp
 
 #OBJS specifies which files to compile as part of the project
 OBJS = $(ENGINE_OBJS) $(RENDERER_OBJS) src/*.cpp
@@ -17,9 +17,8 @@ VENDOR_GLFW = -Lvendor/GLFW/lib -Ivendor/GLFW/include
 VENDOR_glm = -Ivendor/glm/include
 VENDOR_SOIL2 = -Lvendor/SOIL2/lib -Ivendor/SOIL2/include
 VENDOR_SimplexNoise = vendor/SimplexNoise/*.h vendor/SimplexNoise/*.cpp
-# VENDOR_imgui = vendor/imgui/*.cpp vendor/imgui/*.cpp vendor/imgui/backends/imgui_impl_glfw.h vendor/imgui/backends/imgui_impl_glfw.cpp vendor/imgui/backends/imgui_impl_opengl3.h vendor/imgui/backends/imgui_impl_opengl3.cpp
 
-VENDOR = $(VENDOR_glad) $(VENDOR_GLFW) $(VENDOR_glm) $(VENDOR_SOIL2) $(VENDOR_SimplexNoise) # $(VENDOR_imgui)
+VENDOR = $(VENDOR_glad) $(VENDOR_GLFW) $(VENDOR_glm) $(VENDOR_SOIL2) $(VENDOR_SimplexNoise)
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = $(VENDOR) -lopengl32 -lglu32 -lglfw3dll -lsoil2-debug
